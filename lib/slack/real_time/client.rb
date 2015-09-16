@@ -8,6 +8,8 @@ module Slack
       include Api::Ping
       include Api::Message
       include Api::Typing
+      include Api::Reaction_added
+      include Api::Reaction_removed
 
       attr_accessor :web_client
       attr_accessor(*Config::ATTRIBUTES)
@@ -49,6 +51,10 @@ module Slack
             end
 
             ws.on :message do |event|
+              dispatch(event)
+            end
+
+            ws.on :reaction_added do |event|
               dispatch(event)
             end
 

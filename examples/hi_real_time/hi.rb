@@ -18,10 +18,18 @@ client.on :message do |data|
 
   case data['text']
   when 'bot hi' then
-    client.message channel: data['channel'], text: "Hi <@#{data['user']}>!"
+    client.message channel: data['channel'], text: "Hi terran <@#{data['user']}>!"
   when /^bot/ then
     client.message channel: data['channel'], text: "Sorry <@#{data['user']}>, what?"
   end
 end
+
+client.on :reaction_added do |data|
+  puts data
+
+end
+
+
+
 
 client.start!
